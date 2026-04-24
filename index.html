@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Pet Food Dispenser</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paho-mqtt/1.0.1/mqttws31.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-shell">
+        <main class="dashboard">
+            <h1>Smart Pet Food Dispenser</h1>
+            <p class="subtitle">Monitor feeding activity and trigger feeding instantly.</p>
+
+            <section class="card timer-card">
+                <h2>Last Feeding</h2>
+                <p id="lastFeedLabel">No feeding yet</p>
+                <div class="timer-value" id="elapsedTime">00:00:00</div>
+                <div class="timer-chips">
+                    <span class="chip">Auto-refresh: 1s</span>
+                    <span class="chip" id="statusChip">Status: Connecting...</span>
+                </div>
+            </section>
+
+            <section class="card controls-card">
+                <h2>Feed Control</h2>
+                <button id="feedBtn" type="button">
+                    <span class="btn-dot"></span>
+                    Feed Pet Now
+                </button>
+                <label for="durationRange">Dispenser open duration</label>
+                <input id="durationRange" type="range" min="1" max="30" value="5">
+                <p class="duration-text"><span id="durationValue">5</span> seconds</p>
+            </section>
+        </main>
+
+        <aside class="card history-panel">
+            <h2>Feeding History</h2>
+            <ul id="historyList">
+                <li>No feedings recorded yet.</li>
+            </ul>
+        </aside>
+    </div>
+
+    <div class="container background-corgi" aria-hidden="true">
+        <div class="corgi">
+            <div class="head">
+                <div class="ear ear--r"></div>
+                <div class="ear ear--l"></div>
+                <div class="eye eye--left"></div>
+                <div class="eye eye--right"></div>
+                <div class="face">
+                    <div class="face__white">
+                        <div class="face__orange face__orange--l"></div>
+                        <div class="face__orange face__orange--r"></div>
+                    </div>
+                </div>
+                <div class="face__curve"></div>
+                <div class="mouth">
+                    <div class="nose"></div>
+                    <div class="mouth__left">
+                        <div class="mouth__left--round"></div>
+                        <div class="mouth__left--sharp"></div>
+                    </div>
+                    <div class="lowerjaw">
+                        <div class="lips"></div>
+                        <div class="tongue"></div>
+                    </div>
+                    <div class="snout"></div>
+                </div>
+            </div>
+            <div class="neck__back"></div>
+            <div class="neck__front"></div>
+            <div class="body">
+                <div class="body__chest"></div>
+            </div>
+            <div class="foot foot__left foot__front foot__1"></div>
+            <div class="foot foot__right foot__front foot__2"></div>
+            <div class="foot foot__left foot__back foot__3"></div>
+            <div class="foot foot__right foot__back foot__4"></div>
+            <div class="tail"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
