@@ -8,12 +8,29 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="loginOverlay" class="auth-overlay">
+        <form id="loginForm" class="card auth-card" autocomplete="off">
+            <h2>Secure Login</h2>
+            <p class="auth-subtitle">Login first before using Feed Pet Now.</p>
+            <label for="usernameInput">Username</label>
+            <input id="usernameInput" class="auth-input" type="text" placeholder="Enter username" required>
+            <label for="passwordInput">Password</label>
+            <input id="passwordInput" class="auth-input" type="password" placeholder="Enter password" required>
+            <p id="loginError" class="auth-error" aria-live="polite"></p>
+            <button id="loginBtn" type="submit">Login</button>
+            <p class="auth-note">Default login: admin / pfd123</p>
+        </form>
+    </div>
+
     <div class="app-shell">
         <main class="dashboard">
-            <h1>Smart Pet Food Dispenser</h1>
-            <p class="subtitle">Monitor feeding activity and trigger feeding instantly.</p>
+            <div class="title-row">
+                <h1>Smart Pet Food Dispenser</h1>
+                <button id="logoutBtn" type="button" class="logout-btn">Logout</button>
+            </div>
+            <p class="subtitle motion-item">Monitor feeding activity and trigger feeding instantly.</p>
 
-            <section class="card timer-card">
+            <section class="card timer-card motion-item">
                 <h2>Last Feeding</h2>
                 <p id="lastFeedLabel">No feeding yet</p>
                 <div class="timer-value" id="elapsedTime">00:00:00</div>
@@ -23,7 +40,7 @@
                 </div>
             </section>
 
-            <section class="card controls-card">
+            <section class="card controls-card motion-item">
                 <h2>Feed Control</h2>
                 <button id="feedBtn" type="button">
                     <span class="btn-dot"></span>
@@ -35,13 +52,18 @@
             </section>
         </main>
 
-        <aside class="card history-panel">
+        <aside class="card history-panel motion-item">
             <h2>Feeding History</h2>
             <ul id="historyList">
                 <li>No feedings recorded yet.</li>
             </ul>
         </aside>
     </div>
+
+    <footer class="site-footer">
+        <p>Made by Pawnleads.</p>
+        <p>&copy; 2026 The Smart food dispenser. All rights reserved.</p>
+    </footer>
 
     <div class="container background-corgi" aria-hidden="true">
         <div class="corgi">
