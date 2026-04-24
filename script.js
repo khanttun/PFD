@@ -1,6 +1,6 @@
-// --- CONFIGURATION ---
+// --- UPDATED CONFIGURATION FOR VERCEL ---
 const MQTT_BROKER = "broker.emqx.io";
-const MQTT_PORT = 8083; // WebSocket port for browsers
+const MQTT_PORT = 8084; // Must be 8084 for HTTPS/SSL
 const MQTT_TOPIC = "kent/cat/feed";
 const CLIENT_ID = "web_user_" + Math.random().toString(16).substr(2, 8);
 
@@ -27,7 +27,9 @@ client.connect({
         console.error("Connection failed:", err.errorMessage);
         statusChip.textContent = "Status: Connection Failed";
     },
-    useSSL: false
+    useSSL: true, // MUST BE TRUE FOR VERCEL
+    timeout: 3,
+    keepAliveInterval: 30
 });
 
 // --- HELPER FUNCTIONS ---
@@ -62,6 +64,11 @@ durationRange.addEventListener("input", () => {
 feedBtn.addEventListener("click", () => {
     const dur = durationRange.value;
     
+    if(!client.isConnected()) {
+        alert("Not connected to cloud. Please refresh.");
+        return;
+    }
+
     // 1. Create the MQTT Message
     const message = new Paho.MQTT.Message("FEED");
     message.destinationName = MQTT_TOPIC;
@@ -90,7 +97,8 @@ feedBtn.addEventListener("click", () => {
         }, dur * 1000);
 
     } catch (e) {
-        alert("MQTT not connected! Refresh and try again.");
+        console.error("MQTT Error:", e);
+        alert("Could not send signal. Check console for details.");
     }
 });
 
